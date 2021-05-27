@@ -55,6 +55,14 @@
     <button>Trigger a Global Error</button>
   </section>
 
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "081d297e967f4426977be11a02a87577"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                          
   <script>
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
@@ -132,6 +140,26 @@
       const orange = () => { console.trace(); };
       apple();
     });
+
+    // Trigger a Global Error
+    errorBtns[10].addEventListener('click', () => {
+      abooM('bad code!');
+    });
+
+    //TrackJS.track('Testing TrackJS!');
+    if (window.onerror) // then one exists
+      {
+       var oldError = window.onerror;
+       var newErrorHandler = function (errorMessage,url,lineNumber) { 
+         console.log(errorMessage);
+         //AjaxTCRExamples.reportJSError(errorMessage,url,lineNumber); 
+         //oldError(errorMessage,url,lineNumber); 
+        }
+       window.onerror = newErrorHandler;
+      }
+    //else {
+      //window.onerror = AjaxTCRExamples.reportJSError;
+    //}
 
   </script>
 </body>
