@@ -56,6 +56,12 @@
   </section>
 
   <script>
+    class OperationError extends Error {
+      constructor(message) {
+        super(message); // (1)
+        this.name = "OperationError"; // (2)
+      }
+    };
     let calculateBtn = document.querySelector('#calculate');
     calculateBtn.addEventListener('click', () => {
       let output = document.querySelector('output');
@@ -63,6 +69,22 @@
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      let val = "NaN";
+      let temp;
+
+      try {
+        temp = eval(`${firstNum} ${operator} ${secondNum}`);
+        if (operator == '/' && secondNum == '0') {
+          
+          throw new OperationError("Division by 0")
+        } else {
+          val = temp;
+        }
+      } catch (err) {
+        console.error("Error: " + err.message)
+      } finally {
+        output.innerHTML = val;
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -132,6 +154,9 @@
       const orange = () => { console.trace(); };
       apple();
     });
+
+    
+    
 
   </script>
 </body>
