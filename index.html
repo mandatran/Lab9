@@ -46,7 +46,6 @@
     <button>Console Error Demo</button>
     <button>Console Dir</button>
     <button>Console dirxml</button>
-    <button>Console Error</button>
     <button>Console Group Start</button>
     <button>Console Group End</button>
     <button>Console Table</button>
@@ -68,6 +67,72 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    const label = 'hiiiiiiii';
+    // Console Log Demo
+    errorBtns[0].addEventListener('click', () => {
+      console.log("console log demo");
+    });
+
+    // Console Error Demo
+    errorBtns[1].addEventListener('click', () => {
+      console.error("console error demo");
+    });
+
+    // Console Dir
+    errorBtns[2].addEventListener('click', () => {
+      console.dir(document.head);
+    });
+
+    // Console dirxml
+    errorBtns[3].addEventListener('click', () => {
+      console.dirxml(document);;
+    });
+
+    // Console Group Start
+    errorBtns[4].addEventListener('click', () => {
+      console.group(label);
+    });
+
+    // Console Group End
+    errorBtns[5].addEventListener('click', () => {
+      console.groupEnd(label);
+    });
+
+    // Console Table
+    errorBtns[6].addEventListener('click', () => {
+      console.table([
+        {
+          first: 'James',
+          last: 'Daza',
+        },
+        {
+          first: 'Manda',
+          last: 'Tran',
+        },
+      ]);
+    });
+
+    // Start Timer
+    errorBtns[7].addEventListener('click', () => {
+      console.log("Timer started!");
+      console.time();
+    });
+
+    // End Timer
+    errorBtns[8].addEventListener('click', () => {
+      console.log("Timer ended!");
+      console.timeEnd();
+    });
+
+    // Console Trace
+    errorBtns[9].addEventListener('click', () => {
+      const apple = () => { banana(); };
+      const banana = () => { grape(); };
+      const grape = () => { orange(); };
+      const orange = () => { console.trace(); };
+      apple();
+    });
+
   </script>
 </body>
 </html>
